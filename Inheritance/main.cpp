@@ -3,34 +3,30 @@
 using namespace std;
 
 class base {
-	private:
+
+	protected:
 		int a;
+	public:
+		void showA() { cout << "a = " << a << endl; }
+};
+
+class base2 {
 	protected:
 		int b;
 	public:
-		int c;
-		void showBase() { cout << "a = " << a << ", b = " << b << ", c = " << c << endl; }
-		void set() { a = 100; b = 200; c = 300; }
-
+		void showB() { cout << "b = " << b << endl; }
 };
 
-class derived : protected base {
-	private:
-		
+class derived : public base, public base2 {
 	public:
-		void setB(int val) { b = val; }
-		void setC(int val) { c = val; }
-		void show() { cout << ", b = " << b << ", c = " << c << endl; } 
+		void set() { a = 100; b = 200; }
 };
-
-
-
 
 int main() {
 	derived d;
-	d.setB(2);
-	d.setC(3);
-
+	d.set();
+	d.showA();
+	d.showB();
 	return 0;
 }
 
